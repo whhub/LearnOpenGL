@@ -13,7 +13,11 @@ Thumbs.db
 *_p.c
 *.ncb
 *.suo
+*.sdf
+*.opensdf
+*.filters
 *.sln.docstates
+*.ipch
 *.tlb
 *.tlh
 *.bak
