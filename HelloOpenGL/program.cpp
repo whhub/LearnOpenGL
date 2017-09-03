@@ -7,11 +7,27 @@
 
 using namespace std;
 
+// Shaders
+const GLchar* vertexShaderSource = "#version 330 core\n"
+    "layout (location = 0) in vec3 position;\n"
+    "void main()\n"
+    "{\n"
+    "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+    "}\0";
+
+const GLchar* fragmentShaderSource = "#version 330 core\n"
+    "out vec4 color;\n"
+    "void main()\n"
+    "{\n"
+    "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "}\n\0";
+
+
 void InitialGlfw()
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 }
@@ -42,6 +58,17 @@ GLfloat vertices[] = {
 };
 
 
+void CheckShaderCompileStatus(GLuint vertexShader)
+{
+    GLint Success;
+    GLchar infoLog[512];
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &Success);
+    if(!Success)
+    {
+        glGetShaderInfoLog(vertexShader, 512, nullptr, infoLog);
+        cout << "ERROR::SHADER:COMPILATION_FAILED\n" << infoLog << endl;
+    }
+}
 
 int main()
 {
@@ -73,6 +100,34 @@ int main()
 	glfwGetFramebufferSize(window, &width, &height);
 	glViewport(0, 0, width, height); // 从左下角开始
 
+    // VertexShader
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
+    glCompileShader(vertexShader);
+        // 检测着色器源码是否编译成功
+        CheckShaderCompileStatus(vertexShader);
+
+    // FragmentShader
+    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &fragmentShaderSource, nullptr);
+    glCompileShader(fragmentShader);
+        // 检测着色器源码是否编译成功
+        CheckShaderCompileStatus(fragmentShader);
+
+    // 着色器程序
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+       // 检测链接着色器程序是否成功
+       GLint success;
+       GLchar infoLog[512];
+       glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+       if(!success)
+       {
+           glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
+           cout << "ERROR::SHADER:COMPILATION_FAILED\n" << infoLog << endl;
+        } 
 
 	// Input Event
 	glfwSetKeyCallback(window, key_callback);
