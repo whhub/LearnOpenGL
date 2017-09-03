@@ -34,6 +34,15 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 }
 
+
+GLfloat vertices[] = {
+	-0.5f, -0.5f, 0.0f,
+	0.5f, -0.5f, 0.0f,
+	0.0f, 0.5f, 0.0f
+};
+
+
+
 int main()
 {
 	// 初始化窗口参数
@@ -65,12 +74,20 @@ int main()
 	glViewport(0, 0, width, height); // 从左下角开始
 
 
-	// Input
+	// Input Event
 	glfwSetKeyCallback(window, key_callback);
 
 
 	// 清屏参数
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+	//创建顶点缓冲对象， ID 是 1
+	GLuint VBO;
+	glGenBuffers(1, &VBO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+	// 向顶点缓冲对象写入数据
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 
 	// Game Loop
