@@ -137,13 +137,23 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	//创建顶点缓冲对象， ID 是 1
-	GLuint VBO;
+	GLuint VAO, VBO;
+    glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    // Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
+    glBindVertexArray(VAO);
+	
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 	// 向顶点缓冲对象写入数据
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
+
+    glBindVertexArray(0); // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
 
 	// Game Loop
 	while(!glfwWindowShouldClose(window))	// glfw 监听是否需要需要退出
@@ -153,8 +163,17 @@ int main()
 		// 渲染指令
 		glClear(GL_COLOR_BUFFER_BIT);
 
+        // Draw our first triangle
+        glUseProgram(shaderProgram);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindVertexArray(0);   // unbind VBO
+
 		glfwSwapBuffers(window);	// 交换双缓冲
 	}
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
 	
 	glfwTerminate();	// 释放 GLFW 分配的内存	
 
