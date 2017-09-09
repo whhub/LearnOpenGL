@@ -314,6 +314,12 @@ void CheckShaderProgramLinkStatus(GLuint shaderProgram)
 
 int main()
 {
+	// 查询最多可声明的顶点属性个数
+	GLint nrAttributes;
+	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+	cout << "Maximum nr of vertex attributes supported: " << nrAttributes << endl;
+
+
 	// 初始化窗口参数
 	InitialGlfw();
 
