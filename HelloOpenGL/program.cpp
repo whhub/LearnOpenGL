@@ -22,6 +22,13 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
     "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
     "}\n\0";
 
+const GLchar* yellowFragmentShaderSource = "#version 330 core\n"
+	"out vec4 color;\n"
+	"void main()\n"
+	"{\n"
+	"color = vec4(1.0f, 1.0f, 0.0f, 1.0f);\n"
+	"}\n\0";
+
 
 void InitialGlfw()
 {
@@ -220,6 +227,79 @@ void DrawTwoCollectedTriangle(GLFWwindow* window, GLuint shaderProgram)
 
 }
 
+void DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(GLFWwindow* window, GLuint shaderProgram1, GLuint shaderProgram2)
+{
+	GLfloat vertices[] = {
+		-0.5f, -0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f,
+		0.0f, 0.5f, 0.0f
+	};
+
+	GLuint VAO, VBO, VAO2, VBO2;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenVertexArrays(1, &VAO2);
+	glGenBuffers(1, &VBO2);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindVertexArray(VAO2);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid *)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	int i=0;
+	while(!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		if(!(i%100))
+		{
+			glUseProgram(shaderProgram2);
+			glBindVertexArray(VAO2);
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+			glBindVertexArray(0);
+		}
+		else
+		{
+			glUseProgram(shaderProgram1);
+			glBindVertexArray(VAO);
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+			glBindVertexArray(0);
+		}
+
+		i++;
+
+		glfwSwapBuffers(window);
+	}
+
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteVertexArrays(1, &VAO2);
+	glDeleteBuffers(1, &VBO2);
+}
+
+
+void CheckShaderProgramLinkStatus(GLuint shaderProgram)
+{
+	GLint success;
+	GLchar infoLog[512];
+	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	if(!success)
+	{
+		glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
+		cout << "ERROR::SHADER:COMPILATION_FAILED\n" << infoLog << endl;
+	} 
+}
 
 int main()
 {
@@ -265,20 +345,29 @@ int main()
         // 检测着色器源码是否编译成功
         CheckShaderCompileStatus(fragmentShader);
 
+	// yellowFragmentShader
+	GLuint yellowFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(yellowFragmentShader, 1, &yellowFragmentShaderSource, nullptr);
+	glCompileShader(yellowFragmentShader);
+		// 检测着色器源码是否编译成功
+		CheckShaderCompileStatus(yellowFragmentShader);
+
     // 着色器程序
     GLuint shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
        // 检测链接着色器程序是否成功
-       GLint success;
-       GLchar infoLog[512];
-       glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-       if(!success)
-       {
-           glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
-           cout << "ERROR::SHADER:COMPILATION_FAILED\n" << infoLog << endl;
-        } 
+		CheckShaderProgramLinkStatus(shaderProgram);
+
+
+	// 着色器程序2
+	GLuint shaderProgram2 = glCreateProgram();
+	glAttachShader(shaderProgram2, vertexShader);
+	glAttachShader(shaderProgram2, yellowFragmentShader);
+	glLinkProgram(shaderProgram2);
+		// 检测链接着色器程序是否成功
+		CheckShaderProgramLinkStatus(shaderProgram2);
 
 	// Input Event
 	glfwSetKeyCallback(window, key_callback);
@@ -286,11 +375,12 @@ int main()
 
 	// 清屏参数
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	//DrawTriangle(window, shaderProgram);
 	//DrawRectangle(window, shaderProgram);
-	DrawTwoCollectedTriangle(window, shaderProgram);
+	//DrawTwoCollectedTriangle(window, shaderProgram);
+	DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(window, shaderProgram, shaderProgram2);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存	
 
