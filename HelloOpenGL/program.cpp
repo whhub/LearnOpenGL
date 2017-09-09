@@ -10,16 +10,19 @@ using namespace std;
 // Shaders
 const GLchar* vertexShaderSource = "#version 330 core\n"
     "layout (location = 0) in vec3 position;\n"
+	"out vec4 vertexColor;\n"	// 为片段着色器指定一个颜色输出
     "void main()\n"
     "{\n"
-    "gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+    "gl_Position = vec4(position, 1.0);\n"
+	"vertexColor = vec4(0.5f, 0.0f, 0.0f, 1.0f);\n"
     "}\0";
 
 const GLchar* fragmentShaderSource = "#version 330 core\n"
-    "out vec4 color;\n"
+    "in vec4 vertexColor;\n"	// 从顶点着色器传来的输入变量（名称相同、类型相同）
+	"out vec4 color;\n"			// 片段着色器输出的变量名任意，但类型必须是 vec4
     "void main()\n"
     "{\n"
-    "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "color = vertexColor;\n"
     "}\n\0";
 
 const GLchar* yellowFragmentShaderSource = "#version 330 core\n"
@@ -394,10 +397,10 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	//DrawTriangle(window, shaderProgram);
+	DrawTriangle(window, shaderProgram);
 	//DrawRectangle(window, shaderProgram);
 	//DrawTwoCollectedTriangle(window, shaderProgram);
-	DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(window, shaderProgram, shaderProgram2);
+	//DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(window, shaderProgram, shaderProgram2);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存	
 
