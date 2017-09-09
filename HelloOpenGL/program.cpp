@@ -171,6 +171,53 @@ void DrawRectangle(GLFWwindow* window, GLuint shaderProgram)
 
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+}
+
+void DrawTwoCollectedTriangle(GLFWwindow* window, GLuint shaderProgram)
+{
+	GLfloat vertices[] = {
+		// 第一个三角形
+		-0.5f, 0.0f, 0.0f,
+		0.0f,  0.0f, 0.0f,
+		0.0f, 0.5f, 0.0f,
+		// 第二个三角形
+		0.0f, 0.5f, 0.0f,
+		0.0f, 0.0f, 0.0f,
+		0.5f, 0.0f, 0.0f
+	};
+
+	GLuint VAO, VBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid *)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	while(!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
+
+		glfwSwapBuffers(window);
+	}
+
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+
 }
 
 
@@ -242,8 +289,9 @@ int main()
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	//DrawTriangle(window, shaderProgram);
-	DrawRectangle(window, shaderProgram);
-	
+	//DrawRectangle(window, shaderProgram);
+	DrawTwoCollectedTriangle(window, shaderProgram);
+
 	glfwTerminate();	// 释放 GLFW 分配的内存	
 
 	return 0;
