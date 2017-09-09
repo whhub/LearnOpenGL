@@ -239,6 +239,7 @@ int main()
 
 	// ÇåÆÁ²ÎÊý
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	//DrawTriangle(window, shaderProgram);
 	DrawRectangle(window, shaderProgram);
