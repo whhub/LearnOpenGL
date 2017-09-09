@@ -241,10 +241,19 @@ void DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(GLFWwindow* window, GL
 	glGenVertexArrays(1, &VAO2);
 	glGenBuffers(1, &VBO2);
 
+#pragma region BindVAO
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid *)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+#pragma endregion BindVAO
+
+#pragma region BindVAO2
 	glBindVertexArray(VAO2);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO2);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -254,6 +263,8 @@ void DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(GLFWwindow* window, GL
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+#pragma endregion BindVAO2
+
 
 	int i=0;
 	while(!glfwWindowShouldClose(window))
@@ -262,7 +273,7 @@ void DrawTwoTriangleUsingDifferenceVAOVBOandShaderProgram(GLFWwindow* window, GL
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		if(!(i%100))
+		if(!(i%10))
 		{
 			glUseProgram(shaderProgram2);
 			glBindVertexArray(VAO2);
