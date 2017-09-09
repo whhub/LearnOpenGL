@@ -18,11 +18,11 @@ const GLchar* vertexShaderSource = "#version 330 core\n"
     "}\0";
 
 const GLchar* fragmentShaderSource = "#version 330 core\n"
-    "in vec4 vertexColor;\n"	// 从顶点着色器传来的输入变量（名称相同、类型相同）
 	"out vec4 color;\n"			// 片段着色器输出的变量名任意，但类型必须是 vec4
+	"uniform vec4 ourColor;\n"	// 在 OpenGL 程序代码中设置这个变量
     "void main()\n"
     "{\n"
-    "color = vertexColor;\n"
+    "color = ourColor;\n"
     "}\n\0";
 
 const GLchar* yellowFragmentShaderSource = "#version 330 core\n"
@@ -110,6 +110,13 @@ void DrawTriangle(GLFWwindow* window, GLuint shaderProgram)
 
 		// Draw our first triangle
 		glUseProgram(shaderProgram);
+
+		// 更新 uniform 颜色
+		GLfloat timeValue = glfwGetTime();
+		GLfloat greenValue = (sin(timeValue)/2)+0.5;
+		GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
+		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+
 		glBindVertexArray(VAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		glBindVertexArray(0);   // unbind VBO
