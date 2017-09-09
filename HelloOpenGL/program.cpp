@@ -111,6 +111,69 @@ void DrawTriangle(GLFWwindow* window, GLuint shaderProgram)
 	glDeleteBuffers(1, &VBO);
 }
 
+void DrawRectangle(GLFWwindow* window, GLuint shaderProgram)
+{
+	GLfloat vertices[] = {
+		0.5f, 0.5f, 0.0f,	// 右上角
+		0.5f,-0.5f, 0.0f,	// 右下角
+		-0.5f,-0.5f,0.0f,	// 左下角
+		-0.5f,0.5f, 0.0f	// 左上角
+	};
+
+	GLuint indices[] = {
+		0, 1, 3,	//第一个三角形
+		1, 2, 3		//第二个三角形 
+	};
+
+	GLuint EBO;
+	glGenBuffers(1, &EBO);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	GLuint VAO, VBO;
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	// 1. Bind the Vertex Array Object first, then bind and set vertex buffer(s) and attribute pointer(s).
+	glBindVertexArray(VAO);
+
+	// 2. 向顶点缓冲对象写入数据
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	// 3. 复制我们的索引数组到一个索引缓冲中，供OpenGL使用
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GL_FLOAT), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
+
+	glBindVertexArray(0); // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
+
+	// Game Loop
+	while(!glfwWindowShouldClose(window))	// glfw 监听是否需要需要退出
+	{
+		glfwPollEvents();	// 检查是否有事件处理函数
+
+		// 渲染指令
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// Draw our first triangle
+		glUseProgram(shaderProgram);
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);   // unbind VBO
+
+		glfwSwapBuffers(window);	// 交换双缓冲
+	}
+
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+}
+
+
 int main()
 {
 	// 初始化窗口参数
@@ -177,8 +240,8 @@ int main()
 	// 清屏参数
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-	DrawTriangle(window, shaderProgram);
-
+	//DrawTriangle(window, shaderProgram);
+	DrawRectangle(window, shaderProgram);
 	
 	glfwTerminate();	// 释放 GLFW 分配的内存	
 
