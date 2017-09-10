@@ -82,6 +82,7 @@
   <ItemGroup>
     <None Include="colorVertex.vs" />
     <None Include="invertColorVertex.vs" />
+    <None Include="UniformOffset.vs" />
     <None Include="usingVertexColor.fs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

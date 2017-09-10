@@ -60,9 +60,9 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	// ShaderProgram
-	GLuint shaderProgram = CreateShaderProgram("invertColorVertex.vs", "usingVertexColor.fs");
+	GLuint shaderProgram = CreateShaderProgram("UniformOffset.vs", "usingVertexColor.fs");
 
-	DrawTriangle(window, shaderProgram);
+	DrawTriangleWithOffset(window, shaderProgram);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存
 	return 0;
