@@ -60,7 +60,7 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	// ShaderProgram
-	GLuint shaderProgram = CreateShaderProgram("UniformOffset.vs", "usingVertexColor.fs");
+	GLuint shaderProgram = CreateShaderProgram("OutputPosition.vs", "ColorEqualPosition.fs");
 
 	DrawTriangleWithOffset(window, shaderProgram);
 

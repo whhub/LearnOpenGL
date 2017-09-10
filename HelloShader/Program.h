@@ -3,3 +3,4 @@
 
 void DrawTriangle(GLFWwindow* window, GLuint shaderProgram);
 void DrawTriangleWithOffset(GLFWwindow* window, GLuint shaderProgram);
+void DrawTriangleColorEqualsPosition(GLFWwindow* window, GLuint shaderProgram);

@@ -80,8 +80,10 @@
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ColorEqualPosition.fs" />
     <None Include="colorVertex.vs" />
     <None Include="invertColorVertex.vs" />
+    <None Include="OutputPosition.vs" />
     <None Include="UniformOffset.vs" />
     <None Include="usingVertexColor.fs" />
   </ItemGroup>
