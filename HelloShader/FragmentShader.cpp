@@ -6,10 +6,10 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
 	"out vec4 color;\n"
 	"void main()\n"
 	"{\n"
-	"color = vec4(1.0, 0.0, 0.0, 1.0f);\n"
+	"color = vec4(ourColor, 1.0f);\n"
 	"}\0";
 
 GLuint CreateFragmentShader()
 {
-	return CreateShader(GL_FRAGMENT_SHADER, "");
+	return CreateShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 }

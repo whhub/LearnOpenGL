@@ -66,17 +66,17 @@
   <ItemGroup>
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="HelloShader.cpp" />
+    <ClCompile Include="Program.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
-    <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AfxStd.h" />
     <ClInclude Include="FragmentShader.h" />
+    <ClInclude Include="Program.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderProgram.h" />
-    <ClInclude Include="VertexBuffer.h" />
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
