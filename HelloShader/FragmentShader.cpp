@@ -13,3 +13,8 @@ GLuint CreateFragmentShader()
 {
 	return CreateShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
 }
+
+GLuint CreateFragmentShader(const GLchar* fragmentShaderFilePath)
+{
+    return CreateShaderByFile(GL_FRAGMENT_SHADER, fragmentShaderFilePath);
+}

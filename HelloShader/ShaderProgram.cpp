@@ -14,17 +14,33 @@ void CheckShaderProgramLinkStatus(GLuint shaderProgram)
 	}
 }
 
-GLuint CreateShaderProgram()
+GLuint CreateShaderProgram(GLuint vertexShader, GLuint fragmentShader)
+{
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShader);
+    glAttachShader(shaderProgram, fragmentShader);
+    glLinkProgram(shaderProgram);
+
+    CheckShaderProgramLinkStatus(shaderProgram);
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+
+    return shaderProgram;
+}
+
+inline GLuint CreateShaderProgram()
 {
 	GLuint vertexShader = CreateVertexShader();
 	GLuint fragmentShader = CreateFragmentShader();
 
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glLinkProgram(shaderProgram);
+	return CreateShaderProgram(vertexShader, fragmentShader);
+}
 
-	CheckShaderProgramLinkStatus(shaderProgram);
+GLuint CreateShaderProgram(const GLchar* vertexShaderFilePath, const GLchar* fragmentShaderFilePath)
+{
+ 	GLuint vertexShader = CreateVertexShader(vertexShaderFilePath);
+	GLuint fragmentShader = CreateFragmentShader(fragmentShaderFilePath);
 
-	return shaderProgram;
+	return CreateShaderProgram(vertexShader, fragmentShader);   
 }

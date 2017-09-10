@@ -16,3 +16,8 @@ GLuint CreateVertexShader()
 {
 	return CreateShader(GL_VERTEX_SHADER, vertexShaderSource);
 }
+
+GLuint CreateVertexShader(const GLchar* vertexShaderFilePath)
+{
+    return CreateShaderByFile(GL_VERTEX_SHADER, vertexShaderFilePath);
+}

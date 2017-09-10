@@ -79,6 +79,10 @@
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="VertexShader.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="colorVertex.vs" />
+    <None Include="usingVertexColor.fs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
