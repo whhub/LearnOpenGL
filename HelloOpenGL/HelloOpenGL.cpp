@@ -112,8 +112,8 @@ void DrawTriangle(GLFWwindow* window, GLuint shaderProgram)
 		glUseProgram(shaderProgram);
 
 		// ¸üÐÂ uniform ÑÕÉ«
-		GLfloat timeValue = glfwGetTime();
-		GLfloat greenValue = (sin(timeValue)/2)+0.5;
+		GLfloat timeValue = (GLfloat)glfwGetTime();
+		GLfloat greenValue = (GLfloat)((sin(timeValue)/2)+0.5);
 		GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
 		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
