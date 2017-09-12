@@ -5,6 +5,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloOpenGL", "HelloOpenGL\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloShader", "HelloShader\HelloShader.vcxproj", "{EC078113-D901-431E-A1EF-9EEAB04A3588}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShaderFactory", "ShaderFactory\ShaderFactory.vcxproj", "{D96681C9-E042-40B1-B48C-616D8A8E6EB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -19,6 +21,10 @@ Global
 		{EC078113-D901-431E-A1EF-9EEAB04A3588}.Debug|Win32.Build.0 = Debug|Win32
 		{EC078113-D901-431E-A1EF-9EEAB04A3588}.Release|Win32.ActiveCfg = Release|Win32
 		{EC078113-D901-431E-A1EF-9EEAB04A3588}.Release|Win32.Build.0 = Release|Win32
+		{D96681C9-E042-40B1-B48C-616D8A8E6EB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D96681C9-E042-40B1-B48C-616D8A8E6EB5}.Debug|Win32.Build.0 = Debug|Win32
+		{D96681C9-E042-40B1-B48C-616D8A8E6EB5}.Release|Win32.ActiveCfg = Release|Win32
+		{D96681C9-E042-40B1-B48C-616D8A8E6EB5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
