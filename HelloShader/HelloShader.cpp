@@ -4,16 +4,8 @@
 
 #include "ShaderProgram.h"
 #include "Program.h"
+#include "GlfwWrapper.h"
 
-void InitialGlfw()
-{
-	glfwInit();
-
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-}
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {

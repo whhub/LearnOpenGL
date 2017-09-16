@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>E:\Code\glfw\build\src\Debug;E:\Code\glew-2.1.0\lib\Debug\Win32;..\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\..\glfw\build\src\Debug;..\..\glew-2.1.0\lib\Debug\Win32;..\Debug;$(LibraryPath)</LibraryPath>
     <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\ShaderFactory;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
