@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\code\LearnOpenGL\ShaderFactory;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\code\LearnOpenGL\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\ShaderFactory;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\glfw\build\src\Debug;..\..\glew-2.1.0\lib\Debug\Win32;..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,7 +56,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>ShaderFactory.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32sd.lib;ShaderFactory.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
