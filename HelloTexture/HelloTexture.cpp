@@ -4,7 +4,7 @@
 
 #include "ShaderProgram.h"
 #include "GlfwWrapper.h"
-
+#include "Program.h"
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
@@ -51,6 +51,8 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	// ShaderProgram
+    GLuint shaderProgram = CreateShaderProgram();
+    //DrawCabinetTexture(window, shaderProgram);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存
 	return 0;
