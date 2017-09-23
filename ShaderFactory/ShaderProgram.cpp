@@ -29,7 +29,7 @@ GLuint CreateShaderProgram(GLuint vertexShader, GLuint fragmentShader)
     return shaderProgram;
 }
 
-inline GLuint CreateShaderProgram()
+GLuint CreateShaderProgram()
 {
 	GLuint vertexShader = CreateVertexShader();
 	GLuint fragmentShader = CreateFragmentShader();

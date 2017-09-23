@@ -52,7 +52,7 @@ int main()
 
 	// ShaderProgram
     GLuint shaderProgram = CreateShaderProgram();
-    //DrawCabinetTexture(window, shaderProgram);
+    DrawCabinetTexture(window, shaderProgram);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存
 	return 0;
