@@ -51,7 +51,7 @@ int main()
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 	// ShaderProgram
-    GLuint shaderProgram = CreateShaderProgram();
+    GLuint shaderProgram = CreateShaderProgram("texturedVertex.vs", "texturedfragment.fs");
     DrawCabinetTexture(window, shaderProgram);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存
