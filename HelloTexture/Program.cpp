@@ -2,6 +2,26 @@
 #include "Program.h"
 #include "soil.h"
 
+GLuint GenTexture(const char * textureFilePath)
+{
+    GLuint texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+
+    // 为当前绑定的纹理对象设置环绕、过滤方式
+
+    // 加载并生成纹理
+    int width, height;
+    unsigned char* image = SOIL_load_image(textureFilePath, &width, &height, 0, SOIL_LOAD_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return texture;
+}
+
 void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 {
         // Vertex Buffer
@@ -17,10 +37,7 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
         1, 2, 3     // Second Triangle
     };
 
-    // 生成纹理
-    GLuint texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+;
 
 
     GLuint VAO, VBO, EBO;
@@ -51,15 +68,9 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);       // Unbind VAO
 
-    // 为当前绑定的纹理对象设置环绕、过滤方式
 
-    // 加载并生成纹理
-    int width, height;
-    unsigned char* image = SOIL_load_image("container.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // 生成纹理
+    GLuint texture1 = GenTexture("container.jpg");
 
 
     while (!glfwWindowShouldClose(window))
@@ -70,7 +81,7 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
         glUseProgram(shaderProgram);
 	
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glBindTexture(GL_TEXTURE_2D, texture1);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);

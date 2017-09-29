@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="awesomeface.png" />
     <None Include="container.jpg" />
     <None Include="ReadMe.txt" />
     <None Include="texturedfragment.fs" />
