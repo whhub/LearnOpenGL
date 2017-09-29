@@ -15,6 +15,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloTexture", "HelloTextur
 		{D96681C9-E042-40B1-B48C-616D8A8E6EB5} = {D96681C9-E042-40B1-B48C-616D8A8E6EB5}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Template", "Template", "{4B7A3AC5-7812-44B1-898D-099A2332BE68}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibProjectTemplate", "LibProjectTemplate\LibProjectTemplate.vcxproj", "{E31440EA-4348-4CC4-9AE1-7BB8F95E123F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AppProjectTemplate", "AppProjectTemplate\AppProjectTemplate.vcxproj", "{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -37,8 +43,20 @@ Global
 		{B31B1D34-C7BD-4CE8-BD6D-50FCFCD4A5F8}.Debug|Win32.Build.0 = Debug|Win32
 		{B31B1D34-C7BD-4CE8-BD6D-50FCFCD4A5F8}.Release|Win32.ActiveCfg = Release|Win32
 		{B31B1D34-C7BD-4CE8-BD6D-50FCFCD4A5F8}.Release|Win32.Build.0 = Release|Win32
+		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F}.Debug|Win32.Build.0 = Debug|Win32
+		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F}.Release|Win32.ActiveCfg = Release|Win32
+		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F}.Release|Win32.Build.0 = Release|Win32
+		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B}.Debug|Win32.Build.0 = Debug|Win32
+		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B}.Release|Win32.ActiveCfg = Release|Win32
+		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F} = {4B7A3AC5-7812-44B1-898D-099A2332BE68}
+		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B} = {4B7A3AC5-7812-44B1-898D-099A2332BE68}
 	EndGlobalSection
 EndGlobal
