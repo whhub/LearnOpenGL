@@ -13,6 +13,12 @@
   <ItemGroup>
     <None Include="copyfile.bat" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TextureFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TextureFactory.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7140BF02-DA29-445E-8423-6A80DBAF2E1C}</ProjectGuid>
     <RootNamespace>TextureFactory</RootNamespace>
@@ -39,7 +45,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\include;..\..\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>..\..\glfw\build\src\Debug;..\..\glew-2.1.0\lib\Debug\Win32;..\..\Simple OpenGL Image Library\projects\VC8\Debug\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
