@@ -24,6 +24,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AppProjectTemplate", "AppPr
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextureFactory", "TextureFactory\TextureFactory.vcxproj", "{7140BF02-DA29-445E-8423-6A80DBAF2E1C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLAppProjectTemplate", "OpenGLAppProjectTemplate\OpenGLAppProjectTemplate.vcxproj", "{1690B804-3C03-4C5F-B1B5-7AB191E1E236}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D96681C9-E042-40B1-B48C-616D8A8E6EB5} = {D96681C9-E042-40B1-B48C-616D8A8E6EB5}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -58,6 +63,10 @@ Global
 		{7140BF02-DA29-445E-8423-6A80DBAF2E1C}.Debug|Win32.Build.0 = Debug|Win32
 		{7140BF02-DA29-445E-8423-6A80DBAF2E1C}.Release|Win32.ActiveCfg = Release|Win32
 		{7140BF02-DA29-445E-8423-6A80DBAF2E1C}.Release|Win32.Build.0 = Release|Win32
+		{1690B804-3C03-4C5F-B1B5-7AB191E1E236}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1690B804-3C03-4C5F-B1B5-7AB191E1E236}.Debug|Win32.Build.0 = Debug|Win32
+		{1690B804-3C03-4C5F-B1B5-7AB191E1E236}.Release|Win32.ActiveCfg = Release|Win32
+		{1690B804-3C03-4C5F-B1B5-7AB191E1E236}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +74,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E31440EA-4348-4CC4-9AE1-7BB8F95E123F} = {4B7A3AC5-7812-44B1-898D-099A2332BE68}
 		{AEE6ABA2-A327-480F-911A-3E8C16E9CA9B} = {4B7A3AC5-7812-44B1-898D-099A2332BE68}
+		{1690B804-3C03-4C5F-B1B5-7AB191E1E236} = {4B7A3AC5-7812-44B1-898D-099A2332BE68}
 	EndGlobalSection
 EndGlobal
