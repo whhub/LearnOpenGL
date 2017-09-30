@@ -69,6 +69,7 @@
     <None Include="ReadMe.txt" />
     <None Include="texturedfragment.fs" />
     <None Include="texturedVertex.vs" />
+    <None Include="twoTexturedFragment.fs" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HelloTexture.cpp" />

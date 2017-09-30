@@ -52,6 +52,7 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
     // …˙≥…Œ∆¿Ì
     GLuint texture1 = GenTexture("container.jpg");
+    GLuint texture2 = GenTexture("awesomeface.png");
 
 
     while (!glfwWindowShouldClose(window))
@@ -62,7 +63,14 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
         glUseProgram(shaderProgram);
 	
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture1);
+        glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture1"), 0);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture2);
+        glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture2"), 1);
+
+
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
