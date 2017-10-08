@@ -8,10 +8,10 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
         // Vertex Buffer
     GLfloat vertices[] = {
 //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   0.55f, 0.55f,   // 右上
-     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   0.55f, 0.45f,   // 右下
-    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.45f, 0.45f,   // 左下
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.45f, 0.55f    // 左上
+     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
+     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
+    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
+    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
     };
     GLuint indices[] = {
         0, 1, 3,    // First Triangle
@@ -51,7 +51,6 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
 
     // 生成纹理
-
     GLuint texture1 = GenTexture("container.jpg");
     GLuint texture2 = GenTexture("awesomeface.png");
 
@@ -71,6 +70,7 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
         glBindTexture(GL_TEXTURE_2D, texture2);
         glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture2"), 1);
 
+        glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), 0.5);
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
