@@ -13,8 +13,8 @@ glm::mat4 CreateSampleTransfrom()
 glm::mat4 CreateTimelyRotation()
 {
     glm::mat4 trans;
-    trans = glm::translate(trans, glm::vec3(0.5, -0.5, 0.0));
     trans = glm::rotate(trans, (GLfloat)glfwGetTime()*50.0f, glm::vec3(0.0, 0.0, 1.0));
+    trans = glm::translate(trans, glm::vec3(0.5, -0.5, 0.0));
     return trans;
 
 }
