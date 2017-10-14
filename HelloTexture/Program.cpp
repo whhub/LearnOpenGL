@@ -1,6 +1,9 @@
 #include "AfxStd.h"
 #include "Program.h"
 #include "TextureFactory.h"
+#include "glm/mat4x4.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "TransformFactory.h"
 
 
 void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
@@ -71,6 +74,9 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
         glUniform1i(glGetUniformLocation(shaderProgram, "ourTexture2"), 1);
 
         glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), 0.5);
+
+        glm::mat4 trans = CreateSampleTransfrom();
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

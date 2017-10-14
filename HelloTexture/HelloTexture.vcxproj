@@ -37,17 +37,18 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\include;..\..\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\include;..\..\Simple OpenGL Image Library\src;..\..\glm;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\glfw\build\src\Debug;..\..\glew-2.1.0\lib\Debug\Win32;..\Debug;..\..\Simple OpenGL Image Library\projects\VC8\Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32sd.lib;ShaderFactory.lib;SOIL.lib;TextureFactory.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32sd.lib;ShaderFactory.lib;SOIL.lib;TextureFactory.lib;TransformFactory.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
