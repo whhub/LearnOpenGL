@@ -18,3 +18,13 @@ glm::mat4 CreateTimelyRotation()
     return trans;
 
 }
+
+glm::mat4 CreateTimelyZoom()
+{
+    glm::mat4 trans;
+    trans = glm::translate(trans, glm::vec3(-0.5, 0.5, 0));
+    GLfloat scale = abs(sin((GLfloat)glfwGetTime()));
+    trans = glm::scale(trans, glm::vec3(scale, scale, scale));
+
+    return trans;
+}

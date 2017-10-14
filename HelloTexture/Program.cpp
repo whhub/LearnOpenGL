@@ -75,11 +75,20 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
         glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), 0.5);
 
+        // 绘制第一个 Cabinet
         glm::mat4 trans = CreateTimelyRotation();
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+
+        // 绘制第二个 Cabinet
+        trans = CreateTimelyZoom();
+        glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
