@@ -75,7 +75,7 @@ void DrawCabinetTexture(GLFWwindow* window, GLuint shaderProgram)
 
         glUniform1f(glGetUniformLocation(shaderProgram, "mixValue"), 0.5);
 
-        glm::mat4 trans = CreateSampleTransfrom();
+        glm::mat4 trans = CreateTimelyRotation();
         glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
 
         glBindVertexArray(VAO);
