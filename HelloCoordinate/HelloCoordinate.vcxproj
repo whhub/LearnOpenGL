@@ -66,6 +66,12 @@
   <ItemGroup>
     <ClCompile Include="HelloCoordinate.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="awesomeface.png" />
+    <None Include="container.jpg" />
+    <None Include="texturedVertex.vs" />
+    <None Include="twoTexturedFragment.fs" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
