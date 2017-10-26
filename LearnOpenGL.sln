@@ -34,6 +34,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloGLM", "HelloGLM\HelloG
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TransformFactory", "TransformFactory\TransformFactory.vcxproj", "{B1352571-434E-4F9D-9841-425AFE7175E6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloCoordinate", "HelloCoordinate\HelloCoordinate.vcxproj", "{F094A894-FDE3-484A-AF94-F4F36FBFDC96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -80,6 +82,10 @@ Global
 		{B1352571-434E-4F9D-9841-425AFE7175E6}.Debug|Win32.Build.0 = Debug|Win32
 		{B1352571-434E-4F9D-9841-425AFE7175E6}.Release|Win32.ActiveCfg = Release|Win32
 		{B1352571-434E-4F9D-9841-425AFE7175E6}.Release|Win32.Build.0 = Release|Win32
+		{F094A894-FDE3-484A-AF94-F4F36FBFDC96}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F094A894-FDE3-484A-AF94-F4F36FBFDC96}.Debug|Win32.Build.0 = Debug|Win32
+		{F094A894-FDE3-484A-AF94-F4F36FBFDC96}.Release|Win32.ActiveCfg = Release|Win32
+		{F094A894-FDE3-484A-AF94-F4F36FBFDC96}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
