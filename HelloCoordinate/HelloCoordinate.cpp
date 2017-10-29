@@ -6,6 +6,7 @@
 #include "GlfwWrapper.h"
 #include <iostream>
 #include "ShaderProgram.h"
+#include "program.h"
 using namespace std;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
@@ -54,7 +55,7 @@ int main()
 
 	// ShaderProgram
     GLuint shaderProgram = CreateShaderProgram("texturedVertex.vs", "twoTexturedFragment.fs");
-    //DrawCabinetTexturePerspective(window, shaderProgram);
+    DrawCabinetTexturePerspective(window, shaderProgram);
 
 	glfwTerminate();	// 释放 GLFW 分配的内存
 	return 0;

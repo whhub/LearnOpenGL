@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\include;..\..\Simple OpenGL Image Library\src;$(IncludePath)</IncludePath>
+    <IncludePath>..\..\glfw\include;..\..\glew-2.1.0\include;..\include;..\..\Simple OpenGL Image Library\src;..\..\glm;$(IncludePath)</IncludePath>
     <LibraryPath>..\..\glfw\build\src\Debug;..\..\glew-2.1.0\lib\Debug\Win32;..\Debug;..\..\Simple OpenGL Image Library\projects\VC8\Debug\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -65,12 +65,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HelloCoordinate.cpp" />
+    <ClCompile Include="program.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="awesomeface.png" />
     <None Include="container.jpg" />
     <None Include="texturedVertex.vs" />
     <None Include="twoTexturedFragment.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="program.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
