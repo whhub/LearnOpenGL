@@ -84,12 +84,13 @@ void DrawCabinetTexturePerspective(GLFWwindow* window, GLuint shaderProgram)
     GLuint texture1 = GenTexture("container.jpg");
     GLuint texture2 = GenTexture("awesomeface.png");
 
+    glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
 	
