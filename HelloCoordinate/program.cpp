@@ -143,7 +143,7 @@ glm::vec3 cubePositions[] = {
             glm::mat4 model;
             model = glm::translate(model, cubePositions[i]);
             GLfloat angle = 20.0f * i;
-            model = glm::rotate(model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
+            model = glm::rotate(model, angle + angle*(i%3==0)*(GLfloat)glfwGetTime(), glm::vec3(1.0f, 0.3f, 0.5f));
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
